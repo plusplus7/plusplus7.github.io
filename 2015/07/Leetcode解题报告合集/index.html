@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://plusplus7.com">
-  <title>plusplus7&#39;s blog</title>
+  <title>Leetcode解题报告合集 | plusplus7&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="plusplus7&apos;s personal homepage">
-<meta property="og:type" content="website">
-<meta property="og:title" content="plusplus7&#39;s blog">
-<meta property="og:url" content="http://plusplus7.com/index.html">
+  <meta name="description" content="当前进度：100/153 Find Minimum in Rotated Sorted Array II二分，寻找轮换排序数组的最小元素，可能有相同元素">
+<meta name="keywords" content="Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode解题报告合集">
+<meta property="og:url" content="http://plusplus7.com/2015/07/Leetcode解题报告合集/index.html">
 <meta property="og:site_name" content="plusplus7&#39;s blog">
-<meta property="og:description" content="plusplus7&apos;s personal homepage">
+<meta property="og:description" content="当前进度：100/153 Find Minimum in Rotated Sorted Array II二分，寻找轮换排序数组的最小元素，可能有相同元素">
+<meta property="og:updated_time" content="2018-01-27T04:29:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="plusplus7&#39;s blog">
-<meta name="twitter:description" content="plusplus7&apos;s personal homepage">
+<meta name="twitter:title" content="Leetcode解题报告合集">
+<meta name="twitter:description" content="当前进度：100/153 Find Minimum in Rotated Sorted Array II二分，寻找轮换排序数组的最小元素，可能有相同元素">
   
     <link rel="alternative" href="/atom.xml" title="plusplus7&#39;s blog" type="application/atom+xml">
   
@@ -164,34 +166,194 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-奥里与迷失之森" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Leetcode解题报告合集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/奥里与迷失之森/">奥里与迷失之森</a>
+    <h1 class="article-title" itemprop="name">
+      Leetcode解题报告合集
     </h1>
   
 
         
-        <a href="/2017/09/奥里与迷失之森/" class="archive-article-date">
-  	<time datetime="2017-09-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
+        <a href="/2015/07/Leetcode解题报告合集/" class="archive-article-date">
+  	<time datetime="2015-07-07T04:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>奥里与迷失之森，Ori and the blind forest，是由Moon Studios GmbH研发的一款动作游戏，于2015年3月11日发行。该游戏采用的是2D画面，但是有3D效果，和《雷曼》颇有几分相似之处，只不过色调更加阴暗。游戏讲述的是奥里（Ori）在一场暴风雨中被吹离了世界树后的一次次奇遇。</p>
-        
-          <a class="article-more-a" href="/2017/09/奥里与迷失之森/#more">more >></a>
-        
+        <p>当前进度：100/153</p>
+<h3 id="Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="Find Minimum in Rotated Sorted Array II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/find_minimum_in_rotated_sorted_array_ii.cc" target="_blank" rel="noopener">Find Minimum in Rotated Sorted Array II</a></h3><p>二分，寻找轮换排序数组的最小元素，可能有相同元素</p>
+<a id="more"></a>
+<p>还是对数组进行二分，当左值等于右值时，可以把二分的范围两边同时减1</p>
+<p>这样做的话，算法时间复杂度是O(n)，不过OJ还是会给Accepted…</p>
+<h3 id="Find-Minimum-in-Rotated-Sorted-Array"><a href="#Find-Minimum-in-Rotated-Sorted-Array" class="headerlink" title="Find Minimum in Rotated Sorted Array"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/find_minimum_in_rotated_sorted_array.cc" target="_blank" rel="noopener">Find Minimum in Rotated Sorted Array</a></h3><p>二分，寻找轮换排序数组的最小元素</p>
+<p>O(logn)的算法是对数组进行二分，如果中间值大于左值，则说明答案在[mid+1,r]；反之，则答案在[l,mid]</p>
+<p>注意特殊处理只有一个元素的情况</p>
+<h3 id="Maximum-Product-Subarray"><a href="#Maximum-Product-Subarray" class="headerlink" title="Maximum Product Subarray"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/maximum_product_subarray.cc" target="_blank" rel="noopener">Maximum Product Subarray</a></h3><p>一维递推，空间复杂度可以优化为O(1)</p>
+<p>dp_max[i]维护包含第i元素的最大值</p>
+<p>dp_min[i]维护包含第i元素的最小值</p>
+<p>动态转移方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp_max[i]=max(dp_max[i-1]\*A[i], A[i], dp_min[i-1]\*A[i])</span><br><span class="line">dp_min[i]=max(dp_min[i-1]\*A[i], A[i], dp_max[i-1]\*A[i])</span><br></pre></td></tr></table></figure>
+<h3 id="Reverse-Words-in-a-String"><a href="#Reverse-Words-in-a-String" class="headerlink" title="Reverse Words in a String"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/reverse_words_in_a_string.cc" target="_blank" rel="noopener">Reverse Words in a String</a></h3><p>字符串处理，简单题</p>
+<h3 id="Evaluate-Reverse-Polish-Notation"><a href="#Evaluate-Reverse-Polish-Notation" class="headerlink" title="Evaluate Reverse Polish Notation"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/evaluate_reverse_polish_notation.cc" target="_blank" rel="noopener">Evaluate Reverse Polish Notation</a></h3><p>简单题，用stack模拟一下就好了</p>
+<h3 id="Max-Points-on-a-Line"><a href="#Max-Points-on-a-Line" class="headerlink" title="Max Points on a Line"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/max_points_on_a_line.cc" target="_blank" rel="noopener">Max Points on a Line</a></h3><p>几何题，枚举两个点组成一条直线，遍历其他点，统计在线上点的数量，就好</p>
+<p>Trick: 两个点在同一位置需要特殊处理</p>
+<h3 id="Sort-List"><a href="#Sort-List" class="headerlink" title="Sort List"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/sort_list.cc" target="_blank" rel="noopener">Sort List</a></h3><p>单链表排序，要求时间复杂度O(nlogn)，空间复杂度O(1)</p>
+<p>用归并排序就ok，后来<a href="http://weibo.com/biaaib" target="_blank" rel="noopener">biaaib</a>告诉我，用快速排序也可以在空间复杂度O(1)的情况下实现</p>
+<h3 id="Insertion-Sort-List"><a href="#Insertion-Sort-List" class="headerlink" title="Insertion Sort List"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/insertion_sort_list.cc" target="_blank" rel="noopener">Insertion Sort List</a></h3><p>单链表排序，要求使用插入排序</p>
+<h3 id="LRU-Cache"><a href="#LRU-Cache" class="headerlink" title="LRU Cache"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/lru_cache.cc" target="_blank" rel="noopener">LRU Cache</a></h3><p>LRU调度算法，实现一个基于LRU算法的Cache</p>
+<p>用STL的map和list可以很快地实现一个</p>
+<p>吐槽：搞不懂为什么这题难度是hard…</p>
+<h3 id="Binary-Tree-Postorder-Traversal"><a href="#Binary-Tree-Postorder-Traversal" class="headerlink" title="Binary Tree Postorder Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_postorder_traversal.cc" target="_blank" rel="noopener">Binary Tree Postorder Traversal</a></h3><p>二叉树的后根序遍历，递归简单实现</p>
+<h3 id="Binary-Tree-Preorder-Traversal"><a href="#Binary-Tree-Preorder-Traversal" class="headerlink" title="Binary Tree Preorder Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_preorder_traversal.cc" target="_blank" rel="noopener">Binary Tree Preorder Traversal</a></h3><p>二叉树的先根序遍历，递归简单实现</p>
+<h3 id="Reorder-List"><a href="#Reorder-List" class="headerlink" title="Reorder List"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/reorder_list.cc" target="_blank" rel="noopener">Reorder List</a></h3><p>单链表的重排列</p>
+<p>把链表从中间截断，把后半段反序，然后把挨着把后半段的元素，每隔一个插入到前半段中</p>
+<h3 id="Linked-List-Cycle-II"><a href="#Linked-List-Cycle-II" class="headerlink" title="Linked List Cycle II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/linked_list_cycle_ii.cc" target="_blank" rel="noopener">Linked List Cycle II</a></h3><p>单链表判环，要求定位到环的起点，要求不使用额外空间，我对此的理解是要求空间复杂度O(1)</p>
+<p>使用快慢指针，当两个指针重合时，令一个新的指针从head开始往下遍历，同时快慢指针中的任意一个和新指针一起往下遍历，当和新指针重合时，那么重合的结点便是环的起点。</p>
+<h3 id="Linked-List-Cycle"><a href="#Linked-List-Cycle" class="headerlink" title="Linked List Cycle"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/linked_list_cycle_i.cc" target="_blank" rel="noopener">Linked List Cycle</a></h3><p>单链表判环，用快慢指针即可。</p>
+<h3 id="Word-Break-II"><a href="#Word-Break-II" class="headerlink" title="Word Break II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/word_break_ii.cc" target="_blank" rel="noopener">Word Break II</a></h3><p>动态规划＋Trie树，和<a href="http://blog.csdn.net/sssogs/article/details/8789386" target="_blank" rel="noopener">LA 3942 Remember the Word</a>一样差不多，只不过此题还要求所有的方案。</p>
+<p>dp[i]表示以第i个字符开始的后缀字符串有多少种拼接方案<br>那么有动态转移方程：dp[i] = sum{ dp[i+len(x) | x 为字典中的字符串，并且x是i后缀的前缀] }</p>
+<p>用Trie树来加速查找x的过程，不过我写得有点搓…感觉也没快多少…</p>
+<h3 id="Word-Break"><a href="#Word-Break" class="headerlink" title="Word Break"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/word_break_i.cc" target="_blank" rel="noopener">Word Break</a></h3><p>动态规划＋Trie树，和<a href="http://blog.csdn.net/sssogs/article/details/8789386" target="_blank" rel="noopener">LA 3942 Remember the Word</a>一样差不多，但是此题只需要求dp[0]是否不为0即可</p>
+<p>解法同上</p>
+<h3 id="Copy-List-with-Random-Pointer"><a href="#Copy-List-with-Random-Pointer" class="headerlink" title="Copy List with Random Pointer"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/copy_list_with_random_pointer.cc" target="_blank" rel="noopener">Copy List with Random Pointer</a></h3><p>单链表的深拷贝</p>
+<p>空间复杂度O(n)的方法很容易想到，我用的是O(1)的方法</p>
+<p>分三步，先把链表的每一个结点复制一个，插入到该结点的后面，复制结点的random指针先设为NULL<br>然后，遍历单链表，把根据原始结点的random指针来设置复制结点的random指针；因为每个原始结点的下一个就是该结点的复制结点，所以复制结点的random指针应该指向其原始结点的random指针所指向的结点的next指针所指向的结点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new-&gt;random = raw-&gt;random-&gt;next;</span><br></pre></td></tr></table></figure>
+<p>最后，把原始元素和复制元素分开形成两个单链表，复制元素形成的单链表就是深拷贝的结果</p>
+<h3 id="Single-Number-II"><a href="#Single-Number-II" class="headerlink" title="Single Number II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/single_number_ii.cc" target="_blank" rel="noopener">Single Number II</a></h3><p>水题，给一个数组，查找出现次数少于三次的元素</p>
+<p>统计一下每一位1的个数，因为只有一个元素出现少于三次，所以每一位1的个数模3就能知道该元素的那一位是否为1</p>
+<p>这题好像是某个ACM比赛的签到题</p>
+<h3 id="Single-Number-I"><a href="#Single-Number-I" class="headerlink" title="Single Number I"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/single_number_i.cc" target="_blank" rel="noopener">Single Number I</a></h3><p>水题，给一个数组，查找出现次数少于两次的元素</p>
+<p>答案是所有元素的异或和</p>
+<h3 id="Candy"><a href="#Candy" class="headerlink" title="Candy"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/candy.cc" target="_blank" rel="noopener">Candy</a></h3><p>给定一数列，求一新数列，满足某元素在原数列中大于相邻元素，在新数列中也大于相邻元素，求新数列和最少是多少，新数列最小值是1</p>
+<p>从左往右扫一遍，使原本是递增的区间在新数列中也递增；从右往左扫一遍，使递减的也递减</p>
+<h3 id="Gas-Station"><a href="#Gas-Station" class="headerlink" title="Gas Station"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/gas_station.cc" target="_blank" rel="noopener">Gas Station</a></h3><p>给定一个环，给出环上路径的距离和汽油量。求从某点出发，能遍历所有结点，而在遍历的每一时刻，汽油量不为负。</p>
+<p>把线路扩展成一个环，从起点出发开始遍历。当走到某点，发现汽油量为负，则能判定，在该点之前的所有点都不能为起点。</p>
+<h3 id="Clone-Graph"><a href="#Clone-Graph" class="headerlink" title="Clone Graph"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/clone_graph.cc" target="_blank" rel="noopener">Clone Graph</a></h3><p>深拷贝一个无向图，有环</p>
+<p>有空间复杂度为O(1)的解法，就和之前的单链表深拷贝一样，把新复制的结点加到原结点的边的最后面，然后遍历原结点的边，把所有原结点的边连着的结点的新复制结点和之前的新复制的结点连接起来，最后再pop掉原结点的边中最后面的元素，就ok</p>
+<p>我用的是一个O(n)的解法，那就是直接DFS，用map记录所有遇到过的结点，把label作为key，新复制的结点作为value存起来。DFS时，如果遇到访问过的结点，就直接返回map中的value，否则新建结点，然后遍历所有边，递归地为新建结点建立边的关系</p>
+<p>我之前写了一个<a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/wa_clone_graph.cc" target="_blank" rel="noopener">O(1)版本</a>不知道为什么会Wrong Answer，我在本机测试发现结果是正确的。看了下discuss，发现有人和我在同一组case遇到同样的问题</p>
+<h3 id="Palindrome-Partitioning-II"><a href="#Palindrome-Partitioning-II" class="headerlink" title="Palindrome Partitioning II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/palindrome_partitioning_ii.cc" target="_blank" rel="noopener">Palindrome Partitioning II</a></h3><p>将字符串分割为一个个回文串，求最少分多少次</p>
+<p>可以先用O(n^2)的预处理，得到is_pal[i][j]表示i到j是否是回文串</p>
+<p>再用O(n^2)的dp，求出dp[i]表示包含第i个字符能分割字符串的最小分割数</p>
+<p>答案就是dp[n-1]</p>
+<h3 id="Palindrome-Partitioning-I"><a href="#Palindrome-Partitioning-I" class="headerlink" title="Palindrome Partitioning I"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/palindrome_partitioning_i.cc" target="_blank" rel="noopener">Palindrome Partitioning I</a></h3><p>将字符串分割为一个个回文串，求所有分法</p>
+<p>可以先用O(n^2)的预处理，得到is_pal[i][j]表示i到j是否是回文串</p>
+<p>然后DFS一下，就行了</p>
+<h3 id="Surrounded-Regions"><a href="#Surrounded-Regions" class="headerlink" title="Surrounded Regions"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/surrounded_regions.cc" target="_blank" rel="noopener">Surrounded Regions</a></h3><p>把图中所有被X包围的O置为X，求最终图</p>
+<p>从图四个边上所有的O开始DFS，所有遍历到的O在最终图中都不是X</p>
+<p>处理完了之后，把所有没有遍历到的O置为X即可</p>
+<h3 id="Sum-Root-to-Leaf-Numbers"><a href="#Sum-Root-to-Leaf-Numbers" class="headerlink" title="Sum Root to Leaf Numbers"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/sum_root_to_leaf_numbers.cc" target="_blank" rel="noopener">Sum Root to Leaf Numbers</a></h3><p>DFS，求所有根到叶子结点所产生数之和</p>
+<h3 id="Longest-Consecutive-Sequence"><a href="#Longest-Consecutive-Sequence" class="headerlink" title="Longest Consecutive Sequence"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/longest_consecutive_sequence.cc" target="_blank" rel="noopener">Longest Consecutive Sequence</a></h3><p>用给定数组组成一条最长连续数列，求长度为多少</p>
+<p>要求使用O(n)的算法</p>
+<p>照着O(n)的尿性，就知道应该使用hash</p>
+<p>把所有数字放到一个 set (unordered_set) 中，然后遍历set中的元素</p>
+<p>因为unordered_set使用的是hash，所以可以根据当前元素在平均O(1)的时间复杂度下知道是否存在相邻元素</p>
+<p>把所有相邻元素都找一次，然后记录最长能达到多少，再把所有找过的元素从set中删掉就ok</p>
+<h3 id="Word-Ladder-II"><a href="#Word-Ladder-II" class="headerlink" title="Word Ladder II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/word_ladder_ii.cc" target="_blank" rel="noopener">Word Ladder II</a></h3><p>搜索题，从某个单词转换到另一个单词的条件是两个单词最多只有1个字符不同。给出一个字典，从起始单词最少转换几次到目标单词，求所有最少转换的路径</p>
+<p>先BFS按层数搜索，搜到目标单词那一层时，停止。纪录所有单词的前驱单词。</p>
+<p>根据记录单词的前驱单词，从目标单词开始反向DFS，同时记录答案即可</p>
+<h3 id="Word-Ladder"><a href="#Word-Ladder" class="headerlink" title="Word Ladder"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/word_ladder_i.cc" target="_blank" rel="noopener">Word Ladder</a></h3><p>搜索题，从某个单词转换到另一个单词的条件是两个单词最多只有1个字符不同。给出一个字典，求从起始单词最少转换几次到目标单词</p>
+<p>BFS一下就好了</p>
+<h3 id="Valid-Palindrome"><a href="#Valid-Palindrome" class="headerlink" title="Valid Palindrome"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/valid_palindrome.cc" target="_blank" rel="noopener">Valid Palindrome</a></h3><p>除掉特殊字符外的字符串，判断是否是回文串</p>
+<p>扫一遍就好了</p>
+<h3 id="Binary-Tree-Maximum-Path-Sum"><a href="#Binary-Tree-Maximum-Path-Sum" class="headerlink" title="Binary Tree Maximum Path Sum"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_maximum_path_sum.cc" target="_blank" rel="noopener">Binary Tree Maximum Path Sum</a></h3><p>树形动态规划，求二叉树上两节点之间路径和</p>
+<p>其实只是有点树形dp的味道。DFS一下，dp[i]表示以节点i为终点，以节点i的某个儿子节点为起点的最大路径和，dp[i] = max(dp[i-&gt;right]+val[i], dp[i-&gt;left]+val[i])</p>
+<p>实际在求的时候，可以利用递归把dp数组省掉，答案ans = max(dp[i-&gt;left]+dp[i-&gt;right]+val[i], dp[i-&gt;left]+val[i], dp[i-&gt;right]+val[i])</p>
+<h3 id="Best-Time-to-Buy-and-Sell-Stock-III"><a href="#Best-Time-to-Buy-and-Sell-Stock-III" class="headerlink" title="Best Time to Buy and Sell Stock III"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/best_time_to_buy_and_sell_stock_iii.cc" target="_blank" rel="noopener">Best Time to Buy and Sell Stock III</a></h3><p>动态规划，给出某股票的n日的价格，能买进卖出最多两次，求最多能赚多少</p>
+<p>dp_left[i]表示从0到i，买卖1次最多能赚多少<br>dp_right[i]表示从i到n，买卖1次最多能赚多少</p>
+<p>答案就是dp_left[i-1]+dp_right[i]</p>
+<h3 id="Best-Time-to-Buy-and-Sell-Stock-II"><a href="#Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="Best Time to Buy and Sell Stock II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/best_time_to_buy_and_sell_stock_ii.cc" target="_blank" rel="noopener">Best Time to Buy and Sell Stock II</a></h3><p>贪心，扫一遍，求出所有峰值和谷值，把差累加起来就好</p>
+<p>需要注意判断谷值时的，&gt;=和&lt;的符号使用问题</p>
+<h3 id="Best-Time-to-Buy-and-Sell-Stock-I"><a href="#Best-Time-to-Buy-and-Sell-Stock-I" class="headerlink" title="Best Time to Buy and Sell Stock I"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/best_time_to_buy_and_sell_stock_i.cc" target="_blank" rel="noopener">Best Time to Buy and Sell Stock I</a></h3><p>简单题，扫一遍，求出最大和最小，答案是差值</p>
+<h3 id="Triangle"><a href="#Triangle" class="headerlink" title="Triangle"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/triangle.cc" target="_blank" rel="noopener">Triangle</a></h3><p>动态规划入门题</p>
+<p>dp[i][j] = min(dp[i-1][j]+val[i][j], dp[i-1][j-1]+val[i][j])</p>
+<h3 id="Pascal’s-Triangle-II"><a href="#Pascal’s-Triangle-II" class="headerlink" title="Pascal’s Triangle II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/pascals_triangle_ii.cc" target="_blank" rel="noopener">Pascal’s Triangle II</a></h3><p>数论，求杨辉三角的第k行</p>
+<p>利用递推求组合数的公式可以直接算出答案</p>
+<p>公式的推导见《算法竞赛入门经典》第183页</p>
+<h3 id="Pascal’s-Triangle"><a href="#Pascal’s-Triangle" class="headerlink" title="Pascal’s Triangle"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/pascals_triangle_i.cc" target="_blank" rel="noopener">Pascal’s Triangle</a></h3><p>数论，求杨辉三角的第k行</p>
+<p>利用递推求组合数的公式可以直接算出答案</p>
+<p>公式的推导见《算法竞赛入门经典》第183页</p>
+<h3 id="Populating-Next-Right-Pointers-in-Each-Node-II"><a href="#Populating-Next-Right-Pointers-in-Each-Node-II" class="headerlink" title="Populating Next Right Pointers in Each Node II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/populating_next_right_pointers_in_each_node_ii.cc" target="_blank" rel="noopener">Populating Next Right Pointers in Each Node II</a></h3><p>指针处理，把任意二叉树上节点和右边离它最近的节点连接起来</p>
+<p>从最高层往下处理，每层的儿子可以借助其父亲的next节点找到右边离它最近的节点</p>
+<p>递归往下即可</p>
+<h3 id="Populating-Next-Right-Pointers-in-Each-Node"><a href="#Populating-Next-Right-Pointers-in-Each-Node" class="headerlink" title="Populating Next Right Pointers in Each Node"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/populating_next_right_pointers_in_each_node_i.cc" target="_blank" rel="noopener">Populating Next Right Pointers in Each Node</a></h3><p>指针处理，把完全二叉树上节点和右边离它最近的节点连接起来</p>
+<p>从最高层往下处理，每层的右儿子的next指向其父亲的next的left节点</p>
+<p>递归往下即可</p>
+<h3 id="Distinct-Subsequences"><a href="#Distinct-Subsequences" class="headerlink" title="Distinct Subsequences"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/distinct_subsequences.cc" target="_blank" rel="noopener">Distinct Subsequences</a></h3><p>动态规划，求S的子序列中有多少是T</p>
+<p>dp[i][j]表示S[0…i]的子序列有多少是T[0…j]</p>
+<p>那么dp[i][j] = dp[i-1][j]+dp[i-1][j-1], 当S[i] == T[j]<br>    dp[i][j] = dp[i-1][j]               当S[i] != T[j]</p>
+<h3 id="Flatten-Binary-Tree-to-Linked-List"><a href="#Flatten-Binary-Tree-to-Linked-List" class="headerlink" title="Flatten Binary Tree to Linked List"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/flatten_binary_tree_to_linked_list.cc" target="_blank" rel="noopener">Flatten Binary Tree to Linked List</a></h3><p>指针处理，把二叉树变成单链表</p>
+<p>flatten把每棵子树变成链，递归一下</p>
+<p>当左儿子存在时，把左边最下面的节点找到，把它和右儿子接起来就ok</p>
+<h3 id="Path-Sum-II"><a href="#Path-Sum-II" class="headerlink" title="Path Sum II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/path_sum_ii.cc" target="_blank" rel="noopener">Path Sum II</a></h3><p>搜索，DFS一下，记录路径就好了</p>
+<h3 id="Path-Sum-I"><a href="#Path-Sum-I" class="headerlink" title="Path Sum I"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/path_sum_i.cc" target="_blank" rel="noopener">Path Sum I</a></h3><p>搜索，DFS一下，判断一下就好了</p>
+<h3 id="Minimum-Depth-of-Binary-Tree"><a href="#Minimum-Depth-of-Binary-Tree" class="headerlink" title="Minimum Depth of Binary Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/minimum_depth_of_binary_tree.cc" target="_blank" rel="noopener">Minimum Depth of Binary Tree</a></h3><p>搜索，DFS一下，记录最小值就好了</p>
+<h3 id="Balanced-Binary-Tree"><a href="#Balanced-Binary-Tree" class="headerlink" title="Balanced Binary Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/balaced_binary_tree.cc" target="_blank" rel="noopener">Balanced Binary Tree</a></h3><p>递归，判断某二叉树是否平衡</p>
+<p>纪录左子树和右子树的高度，比较差值</p>
+<p>递归往下即可</p>
+<h3 id="Convert-Sorted-List-to-Binary-Search-Tree"><a href="#Convert-Sorted-List-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted List to Binary Search Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/convert_sorted_list_to_binary_search_tree.cc" target="_blank" rel="noopener">Convert Sorted List to Binary Search Tree</a></h3><p>递归，把有序链表转化为二叉树</p>
+<p>类似于中序遍历，从左子树开始建树</p>
+<p>增加l和r记录递归的范围，便于控制</p>
+<h3 id="Convert-Sorted-Array-to-Binary-Search-Tree"><a href="#Convert-Sorted-Array-to-Binary-Search-Tree" class="headerlink" title="Convert Sorted Array to Binary Search Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/convert_sorted_array_to_binary_search_tree.cc" target="_blank" rel="noopener">Convert Sorted Array to Binary Search Tree</a></h3><p>递归，把有序数组转化为二叉树</p>
+<p>类似于中序遍历，从左子树开始建树</p>
+<p>增加l和r记录递归的范围，便于控制</p>
+<h3 id="Binary-Tree-Level-Order-Traversal-II"><a href="#Binary-Tree-Level-Order-Traversal-II" class="headerlink" title="Binary Tree Level Order Traversal II"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_level_order_traversal_ii.cc" target="_blank" rel="noopener">Binary Tree Level Order Traversal II</a></h3><p>二叉树的层次遍历，按层数倒序输出</p>
+<p>DFS的时候，记录层数，把值放到相应的vector中，利用reverse函数可以直接反转vector</p>
+<h3 id="Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal"><a href="#Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal" class="headerlink" title="Construct Binary Tree from Inorder and Postorder Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/construct_binary_tree_from_inorder_and_postorder_traversal.cc" target="_blank" rel="noopener">Construct Binary Tree from Inorder and Postorder Traversal</a></h3><p>根据中根序和后根序重建二叉树</p>
+<p>递归的进行，对两个数组都增加l和r值，便于操作，先建左子树再建右子树</p>
+<h3 id="Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal"><a href="#Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal" class="headerlink" title="Construct Binary Tree from Preorder and Inorder Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/construct_binary_tree_from_preorder_and_inorder_traversal.cc" target="_blank" rel="noopener">Construct Binary Tree from Preorder and Inorder Traversal</a></h3><p>根据中根序和先根序重建二叉树</p>
+<p>递归的进行，对两个数组都增加l和r值，便于操作，先建左子树再建右子树</p>
+<h3 id="Maximum-Depth-of-Binary-Tree"><a href="#Maximum-Depth-of-Binary-Tree" class="headerlink" title="Maximum Depth of Binary Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/maximum_depth_of_binary_tree.cc" target="_blank" rel="noopener">Maximum Depth of Binary Tree</a></h3><p>求二叉树最大层数</p>
+<p>DFS一下，记录层数就好</p>
+<h3 id="Binary-Tree-Zigzag-Level-Order-Traversal"><a href="#Binary-Tree-Zigzag-Level-Order-Traversal" class="headerlink" title="Binary Tree Zigzag Level Order Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_zigzag_level_order_traversal.cc" target="_blank" rel="noopener">Binary Tree Zigzag Level Order Traversal</a></h3><p>二叉树的层次遍历，把每隔一层的元素反转后输出</p>
+<p>DFS的时候，记录层数，把值放到相应的vector中，利用reverse函数可以直接反转奇数层的vector</p>
+<h3 id="Binary-Tree-Level-Order-Traversal"><a href="#Binary-Tree-Level-Order-Traversal" class="headerlink" title="Binary Tree Level Order Traversal"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/binary_tree_level_order_traversal.cc" target="_blank" rel="noopener">Binary Tree Level Order Traversal</a></h3><p>二叉树的层次遍历，把每隔一层的元素反转后输出</p>
+<p>DFS的时候，记录层数，把值放到相应的vector中</p>
+<h3 id="Symmetric-Tree"><a href="#Symmetric-Tree" class="headerlink" title="Symmetric Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/symmetric_tree.cc" target="_blank" rel="noopener">Symmetric Tree</a></h3><p>判断二叉树是否对称</p>
+<p>从root的左右儿子分开，一起往下递归即可</p>
+<h3 id="Same-Tree"><a href="#Same-Tree" class="headerlink" title="Same Tree"></a><a href="https://github.com/plusplus7/LeetCodeSolutions/blob/master/src/same_tree.cc" target="_blank" rel="noopener">Same Tree</a></h3><p>判断二叉树是否相同</p>
+<p>一起从root开始往下递归即可</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay-donate.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin-donate.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -202,7 +364,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
         		</li>
       		
 		</ul>
@@ -211,16 +373,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/奥里与迷失之森/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://plusplus7.com/2015/07/Leetcode解题报告合集/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2015/07/普通程序员的日常修行之路/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          普通程序员的日常修行之路
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/一个业余游戏解说的自我修养(一)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一个业余游戏解说的自我修养(一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -240,709 +470,30 @@
 
 
 
-
-  
-    <article id="post-Codeforces Round 378 (Div. 2)解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/">Codeforces Round 378 (Div. 2) 解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/" class="archive-article-date">
-  	<time datetime="2017-07-14T04:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="A-Grasshopper-And-the-String"><a href="#A-Grasshopper-And-the-String" class="headerlink" title="A. Grasshopper And the String"></a>A. Grasshopper And the String</h2><h3 id="解题分析"><a href="#解题分析" class="headerlink" title="解题分析"></a>解题分析</h3><p>O(n)遍历一下就好了</p>
-<p>注意要处理最大跨度的端点在终点的情况</p>
-<p>Tricky case:</p>
-        
-          <a class="article-more-a" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Codeforces</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-跳点寻路算法的学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/跳点寻路算法的学习笔记/">跳点寻路算法的学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/跳点寻路算法的学习笔记/" class="archive-article-date">
-  	<time datetime="2017-05-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>跳点寻路算法（Jump Point Search），是一种在线的高效寻路算法。</p>
-<p>其精髓在于“跳过”一些明显不必经过的路，抽象地说，就是在搜索时大量减掉明显无用的分支，使得朴素的搜索过程变得高效。正如刚刚说的那样，Jump Point Search（简称JPS）是一个在线（Online）算法，所以无需预处理，而且运行时不占用空间。最美妙的是，JPS可以和现有的搜索加速技术（启发式，记忆化等）结合，爆发出惊人的威力。</p>
-<pre><code>在拜读了相当的论文，资料后，今天终于尝试着把代码写出来了。。。    
-这篇博文算是对这么多天学习的一个总结和笔记吧。
-如有谬误，欢迎指正。
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/05/跳点寻路算法的学习笔记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/跳点寻路算法的学习笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Codeforces Round 332 (Div. 2)解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/">Codeforces Round 332 (Div. 2)解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/" class="archive-article-date">
-  	<time datetime="2017-04-13T12:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="A-Patrick-and-Shopping"><a href="#A-Patrick-and-Shopping" class="headerlink" title="A. Patrick and Shopping"></a>A. Patrick and Shopping</h2><h3 id="解题分析"><a href="#解题分析" class="headerlink" title="解题分析"></a>解题分析</h3><p>想想就能知道，Patrick只有4种路线。</p>
-        
-          <a class="article-more-a" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Codeforces</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Secret解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/Secret解题报告/">Secret解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/Secret解题报告/" class="archive-article-date">
-  	<time datetime="2016-09-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目背景较多，读完题之后，发现其实就是要写一个程序来计算$$2^{year-1} \% 1000000007$$</p>
-<p>题目要求一次计算不超过1s才能得满分，而year-1的值非常大。</p>
-<p>显然无法使用暴力的pow(2,year-1)%1000000007来计算答案，题目提示结合密码学的相关知识，于是可以判断出有相关的数学方法可以帮助计算。</p>
-        
-          <a class="article-more-a" href="/2016/09/Secret解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Security</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/Secret解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-【星月之旅】15年6月土耳其12天毕业旅行图文游记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/">【星月之旅】15年6月土耳其12天毕业旅行图文游记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/" class="archive-article-date">
-  	<time datetime="2016-01-22T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I-前言"><a href="#I-前言" class="headerlink" title="I. 前言"></a>I. 前言</h3><p>距离旅行结束，已经过了几个月了。终于还是想要写点东西来稍微纪念一下，第一次孤身一人去千里之外的陌生国度旅行，第一次去夜店，第一次去海边，对了！还有第一次乘坐热气球～</p>
-<p>土耳其，位于亚欧交界地似亚似欧的国家。选这里作为毕业旅行目的地的原因主要是，1.签证好办花费不高，2.想去看看传说中的暗黑2下水道原型（地下水宫）和星球大战月球取景地（格雷梅国家公园），3.热气球～</p>
-<p>嘛～本文将以图文并茂地方式来记录这次旅程中令人印象深刻的地方，希望轻松的文字和图片能够让读者感受到一个神秘而充满魅力的土国。</p>
-        
-          <a class="article-more-a" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一个业余游戏解说的自我修养(二)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/一个业余游戏解说的自我修养(二)/">一个业余游戏解说的自我修养(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/一个业余游戏解说的自我修养(二)/" class="archive-article-date">
-  	<time datetime="2016-01-01T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>作为一个非专业娱乐向游戏解说，今年算是我正式开始的第一年。本着和别人一起分享游戏的乐趣，推荐好玩的冷门游戏的初衷，我今年一共做了64部视频，刚好是个整数（误…)。除了中途回学校毕业，有两个月的时间没有出视频，其他时间基本上都能够达到每周一部视频的频率。所以算勉强完成目标吧*\(^o^)/*散花。</p>
-        
-          <a class="article-more-a" href="/2016/01/一个业余游戏解说的自我修养(二)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/一个业余游戏解说的自我修养(二)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2015年，初来乍到，请多指教" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/2015年，初来乍到，请多指教/">2015年，初来乍到，请多指教</a>
-    </h1>
-  
-
-        
-        <a href="/2015/12/2015年，初来乍到，请多指教/" class="archive-article-date">
-  	<time datetime="2015-12-31T15:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是2015年12月31日，赶在这辞旧迎新之际，总结一下今年发生的种种小事。</p>
-<p>先从去年的总结说起吧。去年的总结题目叫《<a href="http://plusplus7.com/blog/post/summary2014">2014年，梦想还是要有的。万一实现了呢…</a>》，而今年发生的事情和当时想的基本差不多。2015年是我走出校园，走进社会的第一年，所以对于我来说的话，去掉了在学校里所获得的各种光环，和大多数普通的应届生一样，梦想真的是刚刚开始。</p>
-        
-          <a class="article-more-a" href="/2015/12/2015年，初来乍到，请多指教/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/2015年，初来乍到，请多指教/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ICO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/ICO/">ICO</a>
-    </h1>
-  
-
-        
-        <a href="/2015/12/ICO/" class="archive-article-date">
-  	<time datetime="2015-12-13T18:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>15年入冬之际，我弄到了PS3版的《ICO~旺达与巨像HD合集》。我很喜欢玩电子游戏，但是几乎没有写过类似于游玩体验的文字来记录我的真实感受（如果之前录《奥里与迷失之森》实况的最后那段话不算在内的话）。今天突然想写一篇关于《ICO》这个游戏的游玩体验，因为这个游戏给我的体验实在是太…独特了。以至于，我想了快1个小时关于这篇文字应该如何命题，但还是不知道如何用几个简短的词语来描述我的感受，我觉得“独特”这个词也是不太贴切，总觉得少了很多东西。于是，索性就那游戏的名字来起名了，思绪有点乱，容我慢慢理清。</p>
-<p><img src="http://7xlt42.com1.z0.glb.clouddn.com/ICO_front.jpg-fullpercent"></p>
-        
-          <a class="article-more-a" href="/2015/12/ICO/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/ICO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客系统更新日志(2015年09月05日更新)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/博客系统更新日志(2015年09月05日更新)/">博客系统更新日志(2015年09月05日更新)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/博客系统更新日志(2015年09月05日更新)/" class="archive-article-date">
-  	<time datetime="2015-09-04T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br>又是一版新博客…<br><br>这个日志算对plusplus7.com网站系统的发展历程做一个简单的纪录。<br><br>作为一个后台开发汪，写前端代码感觉非常的力不从心。Whatever，我还是按照自己的想法，使用临时学的新技术，请教了不少前端的朋友，搭了一个勉强能满足自己需求的网站系统。非常感谢朋友们对我的帮助。<br><br>那么，和之前的旧博客系统相比，去掉了些无聊的功能，比如标签云…新博客采用了比之前更轻量的架构，使用起来更方便。<br><br></p>
-        
-          <a class="article-more-a" href="/2015/09/博客系统更新日志(2015年09月05日更新)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/博客系统更新日志(2015年09月05日更新)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -966,8 +517,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

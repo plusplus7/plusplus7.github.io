@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://plusplus7.com">
-  <title>plusplus7&#39;s blog</title>
+  <title>Volatile关键字 | plusplus7&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="plusplus7&apos;s personal homepage">
-<meta property="og:type" content="website">
-<meta property="og:title" content="plusplus7&#39;s blog">
-<meta property="og:url" content="http://plusplus7.com/index.html">
+  <meta name="description" content="最近在看Linux的进程调度，其中进程描述符task_struct中有个变量state。这个变量是这样定义的：    volatile long state; 由于之前不了解volatile关键字的用法，所以这里对volatile深究了一下。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volatile关键字">
+<meta property="og:url" content="http://plusplus7.com/2014/01/volatile关键字/index.html">
 <meta property="og:site_name" content="plusplus7&#39;s blog">
-<meta property="og:description" content="plusplus7&apos;s personal homepage">
+<meta property="og:description" content="最近在看Linux的进程调度，其中进程描述符task_struct中有个变量state。这个变量是这样定义的：    volatile long state; 由于之前不了解volatile关键字的用法，所以这里对volatile深究了一下。">
+<meta property="og:image" content="http://bcs.duapp.com/blogbuk/volatile.png">
+<meta property="og:updated_time" content="2018-01-27T06:54:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="plusplus7&#39;s blog">
-<meta name="twitter:description" content="plusplus7&apos;s personal homepage">
+<meta name="twitter:title" content="Volatile关键字">
+<meta name="twitter:description" content="最近在看Linux的进程调度，其中进程描述符task_struct中有个变量state。这个变量是这样定义的：    volatile long state; 由于之前不了解volatile关键字的用法，所以这里对volatile深究了一下。">
+<meta name="twitter:image" content="http://bcs.duapp.com/blogbuk/volatile.png">
   
     <link rel="alternative" href="/atom.xml" title="plusplus7&#39;s blog" type="application/atom+xml">
   
@@ -164,34 +168,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-奥里与迷失之森" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-volatile关键字" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/奥里与迷失之森/">奥里与迷失之森</a>
+    <h1 class="article-title" itemprop="name">
+      Volatile关键字
     </h1>
   
 
         
-        <a href="/2017/09/奥里与迷失之森/" class="archive-article-date">
-  	<time datetime="2017-09-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
+        <a href="/2014/01/volatile关键字/" class="archive-article-date">
+  	<time datetime="2014-01-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-01-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>奥里与迷失之森，Ori and the blind forest，是由Moon Studios GmbH研发的一款动作游戏，于2015年3月11日发行。该游戏采用的是2D画面，但是有3D效果，和《雷曼》颇有几分相似之处，只不过色调更加阴暗。游戏讲述的是奥里（Ori）在一场暴风雨中被吹离了世界树后的一次次奇遇。</p>
-        
-          <a class="article-more-a" href="/2017/09/奥里与迷失之森/#more">more >></a>
-        
+        <p>最近在看Linux的进程调度，其中进程描述符task_struct中有个变量state。这个变量是这样定义的：<br>    volatile long state;</p>
+<p>由于之前不了解volatile关键字的用法，所以这里对volatile深究了一下。</p>
+<a id="more"></a>
+<h2 id="一-volatile关键字"><a href="#一-volatile关键字" class="headerlink" title="一. volatile关键字"></a><strong>一. volatile关键字</strong></h2><p>volatile是一个类型修饰符（type specifier）。</p>
+<p>在程序设计中，尤其是在C语言、C++、C#和Java语言中，使用volatile关键字声明的变量或对象通常拥有和优化和（或）多线程相关的特殊属性。通常，volatile关键字用来阻止（伪）编译器对那些它认为变量的值不能“被代码本身”改变的代码上执行任何优化。 在C环境中，volatile关键字的真实定义和适用范围经常被误解，加之C++、C#和Java都从C中神秘地“继承”了volatile，在这些编程语言中，因此这些语言中volatile的用法和语义大相径庭。</p>
+<h2 id="二-从比赛中引出问题"><a href="#二-从比赛中引出问题" class="headerlink" title="二. 从比赛中引出问题"></a><strong>二. 从比赛中引出问题</strong></h2><p> 在正式ACM/ICPC比赛开始之前，参赛选手都会做一项测试OJ系统各项边界的工作，比如测试提交代码最大可以开多少的数组，能大概接受多少时间复杂度的算法…</p>
+<p>比如：</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main()
+{
+    int i;
+    for (i=0; i&lt;1000000000; i++);
+    return 0;
+}
+</code></pre><p>显然，这段程序是在测试OJ能不能接受$O(10^9)$的算法,提交OJ返回的信息（<strong>Accept</strong> or <strong>Time Limit Exceed</strong>）来判断能否接受。</p>
+<p>通常情况下，这段代码提交上去都会被接受。</p>
+<p>因为在大多数OJ系统中，OJ在用gcc编译代码时，会自动加上-O2优化。结果就是，代码第5行的for循环被编译器优化掉了，最后不会被真正执行。</p>
+<p>这个情况在测试可以开多大数组中也会出现：编译器认为你开的数组没有被使用，所以就自动给优化了。</p>
+<p>于是通常的解决办法是，在循环中加一些赋值或其他的操作，来防止编译器自动优化。</p>
+<h2 id="三-从实例中分析问题"><a href="#三-从实例中分析问题" class="headerlink" title="三. 从实例中分析问题"></a><strong>三. 从实例中分析问题</strong></h2><p>编写Linux信号处理程序遇到的一个问题。</p>
+<p>代码:</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;signal.h&gt;
+int a;
+void func(int signo)
+{
+    printf(&quot;SIGNO: %d\n&quot;,signo);
+    a=1;
+    printf(&quot;%d\n&quot;,a);
+}
+int main()
+{
+    a=0;
+    signal(SIGINT,func);
+    while (a != 1);
+    return 0;
+}
+</code></pre><p>这段程序设置进程接受到SIGINT信号（摁下ctrl+c）时的动作是调用func函数。</p>
+<p>之后程序便进入一个循环，知道a的值被赋为1时，结束。</p>
+<p>可以看看实际效果。</p>
+<p><img src="http://bcs.duapp.com/blogbuk/volatile.png"></p>
+<p>当使用gcc编译不开启O3编译优化选项时，程序执行效果和预想的效果是一样的。</p>
+<p>当使用gcc编译开启O3编译优化选项时，摁下ctrl+c时，程序并没有终止，而是继续循环了下去…最后是发送SIGQUIT信号（摁下ctrl+\）才停止的。</p>
+<p>使用gcc -S t.c命令生产t.s文件，t.s文件里面可以看到t.c通过gcc产生的汇编代码。<br>File t.s：</p>
+<pre><code>    .file    &quot;t.c&quot;
+    .comm    a,4,4
+    .section    .rodata
+.LC0:
+    .string    &quot;SIGNO: %d\n&quot;
+.LC1:
+    .string    &quot;%d\n&quot;
+    .text
+    .globl    func
+    .type    func, @function
+func:
+.LFB0:
+    .cfi_startproc
+    pushl    %ebp
+    .cfi_def_cfa_offset 8
+    .cfi_offset 5, -8
+    movl    %esp, %ebp
+    .cfi_def_cfa_register 5
+    subl    $24, %esp
+    movl    8(%ebp), %eax
+    movl    %eax, 4(%esp)
+    movl    $.LC0, (%esp)
+    call    printf
+    movl    $1, a
+    movl    a, %eax
+    movl    %eax, 4(%esp)
+    movl    $.LC1, (%esp)
+    call    printf
+    leave
+    .cfi_restore 5
+    .cfi_def_cfa 4, 4
+    ret
+    .cfi_endproc
+.LFE0:
+    .size    func, .-func
+    .globl    main
+    .type    main, @function
+main:
+.LFB1:
+    .cfi_startproc
+    pushl    %ebp
+    .cfi_def_cfa_offset 8
+    .cfi_offset 5, -8
+    movl    %esp, %ebp
+    .cfi_def_cfa_register 5
+    andl    $-16, %esp
+    subl    $16, %esp
+    movl    $0, a
+    movl    $func, 4(%esp)
+    movl    $2, (%esp)
+    call    signal
+    nop
+.L3:
+    movl    a, %eax
+    cmpl    $1, %eax
+    jne    .L3
+    movl    $0, %eax
+    leave
+    .cfi_restore 5
+    .cfi_def_cfa 4, 4
+    ret
+    .cfi_endproc
+.LFE1:
+    .size    main, .-main
+    .ident    &quot;GCC: (Ubuntu/Linaro 4.7.2-2ubuntu1) 4.7.2&quot;
+    .section    .note.GNU-stack,&quot;&quot;,@progbits
+</code></pre><p>第38行开始是main函数代码段。</p>
+<p>可以看到第53行到第56行是while循环代码段。</p>
+<p>第54行，把a传送到eax寄存器;</p>
+<p>第55行，比较数值1和eax寄存器中保存的值，即a;</p>
+<p>第56行，jne：若不相等则跳转到.L3;</p>
+<p>所以在汇编代码中，这个while循环是老老实实地执行了的。</p>
+<p>再使用gcc -S -O3 t.c -o t2.s 命令生产t2.s文件，t2.s文件里面可以看到t.c通过gcc并且经过O3编译优化之后产生的汇编代码。为了节省篇幅，就放从main之后的代码段。<br>File t2.s</p>
+<pre><code>...
+main:
+.LFB26:
+    .cfi_startproc
+    pushl    %ebp
+    .cfi_def_cfa_offset 8
+    .cfi_offset 5, -8
+    movl    %esp, %ebp
+    .cfi_def_cfa_register 5
+    andl    $-16, %esp
+    subl    $16, %esp
+    movl    $func, 4(%esp)
+    movl    $2, (%esp)
+    movl    $0, a
+    call    signal
+    cmpl    $1, a
+    je    .L4
+.L6:
+    jmp    .L6
+    .p2align 4,,7
+    .p2align 3
+.L4:
+    xorl    %eax, %eax
+    leave
+    .cfi_restore 5
+    .cfi_def_cfa 4, 4
+    ret
+    .cfi_endproc
+.LFE26:
+    .size    main, .-main
+    .comm    a,4,4
+    .ident    &quot;GCC: (Ubuntu/Linaro 4.7.2-2ubuntu1) 4.7.2&quot;
+    .section    .note.GNU-stack,&quot;&quot;,@progbits
+</code></pre><p>第15行，对比了a和1的大小；</p>
+<p>第16行，je：相等则跳转到.L4。因为a=2，所以显然这里的跳转不会执行。</p>
+<p>第18行，jmp：无条件跳转到L6。相当于是在不断地回跳，即死循环。</p>
+<p>由此可知到，编译器并不知道a的值是会发生变化的。</p>
+<h2 id="四-使用volatile解决问题"><a href="#四-使用volatile解决问题" class="headerlink" title="四. 使用volatile解决问题"></a><strong>四. 使用volatile解决问题</strong></h2><p>volatile关键字就是要告诉编译器，这个变量时经常改变的，而且编译时不要进行代码优化，所以每次读写的时候都要到它所在的地址去读取。<br>如：</p>
+<pre><code>volatile int a；
+</code></pre><p>这样写，编译器就不会再盲目地把原来的那个循环“优化”</p>
+<im1g src="http://bcs.duapp.com/blogbuk/volatile2.jpg">
+</im1g>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay-donate.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin-donate.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -202,7 +390,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -211,16 +399,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/奥里与迷失之森/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://plusplus7.com/2014/01/volatile关键字/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2014/03/2014百度杯 BCTF 游记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2014「百度杯」BCTF 游记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/【总结】2013年，再见 ACM:ICPC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【总结】2013年，再见 ACM/ICPC</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -240,709 +496,30 @@
 
 
 
-
-  
-    <article id="post-Codeforces Round 378 (Div. 2)解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/">Codeforces Round 378 (Div. 2) 解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/" class="archive-article-date">
-  	<time datetime="2017-07-14T04:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="A-Grasshopper-And-the-String"><a href="#A-Grasshopper-And-the-String" class="headerlink" title="A. Grasshopper And the String"></a>A. Grasshopper And the String</h2><h3 id="解题分析"><a href="#解题分析" class="headerlink" title="解题分析"></a>解题分析</h3><p>O(n)遍历一下就好了</p>
-<p>注意要处理最大跨度的端点在终点的情况</p>
-<p>Tricky case:</p>
-        
-          <a class="article-more-a" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Codeforces</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/Codeforces Round 378 (Div. 2)解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-跳点寻路算法的学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/跳点寻路算法的学习笔记/">跳点寻路算法的学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/跳点寻路算法的学习笔记/" class="archive-article-date">
-  	<time datetime="2017-05-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>跳点寻路算法（Jump Point Search），是一种在线的高效寻路算法。</p>
-<p>其精髓在于“跳过”一些明显不必经过的路，抽象地说，就是在搜索时大量减掉明显无用的分支，使得朴素的搜索过程变得高效。正如刚刚说的那样，Jump Point Search（简称JPS）是一个在线（Online）算法，所以无需预处理，而且运行时不占用空间。最美妙的是，JPS可以和现有的搜索加速技术（启发式，记忆化等）结合，爆发出惊人的威力。</p>
-<pre><code>在拜读了相当的论文，资料后，今天终于尝试着把代码写出来了。。。    
-这篇博文算是对这么多天学习的一个总结和笔记吧。
-如有谬误，欢迎指正。
-</code></pre>
-        
-          <a class="article-more-a" href="/2017/05/跳点寻路算法的学习笔记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/跳点寻路算法的学习笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Codeforces Round 332 (Div. 2)解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/">Codeforces Round 332 (Div. 2)解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/" class="archive-article-date">
-  	<time datetime="2017-04-13T12:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="A-Patrick-and-Shopping"><a href="#A-Patrick-and-Shopping" class="headerlink" title="A. Patrick and Shopping"></a>A. Patrick and Shopping</h2><h3 id="解题分析"><a href="#解题分析" class="headerlink" title="解题分析"></a>解题分析</h3><p>想想就能知道，Patrick只有4种路线。</p>
-        
-          <a class="article-more-a" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Codeforces</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/Codeforces Round 332 (Div. 2)解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Secret解题报告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/Secret解题报告/">Secret解题报告</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/Secret解题报告/" class="archive-article-date">
-  	<time datetime="2016-09-16T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目背景较多，读完题之后，发现其实就是要写一个程序来计算$$2^{year-1} \% 1000000007$$</p>
-<p>题目要求一次计算不超过1s才能得满分，而year-1的值非常大。</p>
-<p>显然无法使用暴力的pow(2,year-1)%1000000007来计算答案，题目提示结合密码学的相关知识，于是可以判断出有相关的数学方法可以帮助计算。</p>
-        
-          <a class="article-more-a" href="/2016/09/Secret解题报告/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Security</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/Secret解题报告/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-【星月之旅】15年6月土耳其12天毕业旅行图文游记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/">【星月之旅】15年6月土耳其12天毕业旅行图文游记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/" class="archive-article-date">
-  	<time datetime="2016-01-22T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="I-前言"><a href="#I-前言" class="headerlink" title="I. 前言"></a>I. 前言</h3><p>距离旅行结束，已经过了几个月了。终于还是想要写点东西来稍微纪念一下，第一次孤身一人去千里之外的陌生国度旅行，第一次去夜店，第一次去海边，对了！还有第一次乘坐热气球～</p>
-<p>土耳其，位于亚欧交界地似亚似欧的国家。选这里作为毕业旅行目的地的原因主要是，1.签证好办花费不高，2.想去看看传说中的暗黑2下水道原型（地下水宫）和星球大战月球取景地（格雷梅国家公园），3.热气球～</p>
-<p>嘛～本文将以图文并茂地方式来记录这次旅程中令人印象深刻的地方，希望轻松的文字和图片能够让读者感受到一个神秘而充满魅力的土国。</p>
-        
-          <a class="article-more-a" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/【星月之旅】15年6月土耳其12天毕业旅行图文游记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一个业余游戏解说的自我修养(二)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/一个业余游戏解说的自我修养(二)/">一个业余游戏解说的自我修养(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/一个业余游戏解说的自我修养(二)/" class="archive-article-date">
-  	<time datetime="2016-01-01T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>作为一个非专业娱乐向游戏解说，今年算是我正式开始的第一年。本着和别人一起分享游戏的乐趣，推荐好玩的冷门游戏的初衷，我今年一共做了64部视频，刚好是个整数（误…)。除了中途回学校毕业，有两个月的时间没有出视频，其他时间基本上都能够达到每周一部视频的频率。所以算勉强完成目标吧*\(^o^)/*散花。</p>
-        
-          <a class="article-more-a" href="/2016/01/一个业余游戏解说的自我修养(二)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/一个业余游戏解说的自我修养(二)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2015年，初来乍到，请多指教" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/2015年，初来乍到，请多指教/">2015年，初来乍到，请多指教</a>
-    </h1>
-  
-
-        
-        <a href="/2015/12/2015年，初来乍到，请多指教/" class="archive-article-date">
-  	<time datetime="2015-12-31T15:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是2015年12月31日，赶在这辞旧迎新之际，总结一下今年发生的种种小事。</p>
-<p>先从去年的总结说起吧。去年的总结题目叫《<a href="http://plusplus7.com/blog/post/summary2014">2014年，梦想还是要有的。万一实现了呢…</a>》，而今年发生的事情和当时想的基本差不多。2015年是我走出校园，走进社会的第一年，所以对于我来说的话，去掉了在学校里所获得的各种光环，和大多数普通的应届生一样，梦想真的是刚刚开始。</p>
-        
-          <a class="article-more-a" href="/2015/12/2015年，初来乍到，请多指教/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Life</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/2015年，初来乍到，请多指教/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ICO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/ICO/">ICO</a>
-    </h1>
-  
-
-        
-        <a href="/2015/12/ICO/" class="archive-article-date">
-  	<time datetime="2015-12-13T18:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>15年入冬之际，我弄到了PS3版的《ICO~旺达与巨像HD合集》。我很喜欢玩电子游戏，但是几乎没有写过类似于游玩体验的文字来记录我的真实感受（如果之前录《奥里与迷失之森》实况的最后那段话不算在内的话）。今天突然想写一篇关于《ICO》这个游戏的游玩体验，因为这个游戏给我的体验实在是太…独特了。以至于，我想了快1个小时关于这篇文字应该如何命题，但还是不知道如何用几个简短的词语来描述我的感受，我觉得“独特”这个词也是不太贴切，总觉得少了很多东西。于是，索性就那游戏的名字来起名了，思绪有点乱，容我慢慢理清。</p>
-<p><img src="http://7xlt42.com1.z0.glb.clouddn.com/ICO_front.jpg-fullpercent"></p>
-        
-          <a class="article-more-a" href="/2015/12/ICO/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Games</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/12/ICO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-博客系统更新日志(2015年09月05日更新)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/博客系统更新日志(2015年09月05日更新)/">博客系统更新日志(2015年09月05日更新)</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/博客系统更新日志(2015年09月05日更新)/" class="archive-article-date">
-  	<time datetime="2015-09-04T17:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><br>又是一版新博客…<br><br>这个日志算对plusplus7.com网站系统的发展历程做一个简单的纪录。<br><br>作为一个后台开发汪，写前端代码感觉非常的力不从心。Whatever，我还是按照自己的想法，使用临时学的新技术，请教了不少前端的朋友，搭了一个勉强能满足自己需求的网站系统。非常感谢朋友们对我的帮助。<br><br>那么，和之前的旧博客系统相比，去掉了些无聊的功能，比如标签云…新博客采用了比之前更轻量的架构，使用起来更方便。<br><br></p>
-        
-          <a class="article-more-a" href="/2015/09/博客系统更新日志(2015年09月05日更新)/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/博客系统更新日志(2015年09月05日更新)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -966,8 +543,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
